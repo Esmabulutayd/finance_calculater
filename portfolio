@@ -1,0 +1,41 @@
+import math
+'''the program carries out two different calculation: 
+1-interest of an investment that the user would earn on their investment
+2-monthly amount that needs to be paid on a home loan
+the user chooses their calculation by inputting investment or bond  '''
+print ("investment - to calculate the amount of interest you'll earn on your investment")
+print ("bond - to calculate the amount you'll have to pay monthly on a home loan")
+selection= input("Enter either 'investment' or 'bond' from the menu above to proceed:\n").lower()
+if selection =="investment":
+#ask user to enter amount of money, interest rate, number of years planned for invesment, type of the interest (simple or compound) 
+#assign these inputs to variables
+    amount = int (input ("Please enter the amount of money you'd like invest:\n"))
+    rate= float (input ("Please enter the interest rate e.g. 8:\n"))
+    time= float (input ("Please enter the number of years you plan on investing:\n"))
+    interest= input ("Please enter the interest type:simple or compound\n").lower()
+    if interest=='simple': 
+        #calculate simple interest and assign it to variable 'simple'
+        simple=round (amount*(1+rate/100*time),2)
+        print (f"The amount of money you will get back is: {simple}")
+    elif interest=='compound':
+        #calculate compound interest and assign it variable 'compound'
+        compound=round (amount*math.pow((1+rate/100),time),2)
+        print (f"The amount of money you will get back is: {compound}")
+    else:
+        print("Print enter only 'simple' or 'compoud' for the interest type")
+
+elif selection=="bond":
+    '''ask user:
+    to enter present value of the house and assign it to variable 'value'
+    to enter interest rate and assign it to variable 'rate'
+    to enter number of the months to take repayment and assign it to variable 'month' '''
+    value=int(input("Please enter the present value of the house e.g.100000:\n"))
+    rate=float(input("Please enter the interest rate e.g. 7:\n"))
+    month=int(input("Please enter the number of months you plan to take to repay the bond e.g. 120:\n"))
+    #while calculating the repayment divide interest rate by 12 in order to find monthly interest
+    repayment=((rate/100)/12*value)/(1-(1+(rate/100)/12)**(-month))
+    print (f"You will have to repay {repayment} each month")
+
+else:
+    #give error if the user does not input bond or investment 
+    print ("Invalid input, please select preference only from the menu above")
